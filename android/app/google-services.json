@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "138985801012",
+    "firebase_url": "https://projectpabii-kelompok4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "projectpabii-kelompok4",
+    "storage_bucket": "projectpabii-kelompok4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138985801012:android:8502042ad6615cc719d161",
+        "android_client_info": {
+          "package_name": "com.example.sedekahpoint_kelompok4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA34Q91K0AMQmYlHkPjI0bCy-XJnmQm5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
