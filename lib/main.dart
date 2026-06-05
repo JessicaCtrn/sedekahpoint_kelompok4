@@ -1,30 +1,60 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sedekahpoint_kelompok4/firebase_options.dart';
-import 'package:sedekahpoint_kelompok4/screens/login_screen.dart';
+import 'package:provider/provider.dart';
+import 'services/theme_provider.dart';
+import 'screens/login_screen.dart';
+import 'screens/home_screen.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const SedekahPointApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SedekahPointApp extends StatefulWidget {
+  const SedekahPointApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<SedekahPointApp> createState() => _SedekahPointAppState();
+}
+
+class _SedekahPointAppState extends State<SedekahPointApp> {
+  @override
+  void initState() {
+    super.initState();
+    // Load dark mode dari Firestore setelah user sudah login
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        Provider.of<ThemeProvider>(context, listen: false).loadTheme();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
+      title: 'SedekahPoint',
       debugShowCheckedModeBanner: false,
-      title: 'Sedekah Point',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: const LoginScreen(),
+      theme: themeProvider.lightTheme,
+      darkTheme: themeProvider.darkTheme,
+      themeMode:
+          themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      initialRoute: '/login',
+      routes: {
+        '/login': (_) => const LoginScreen(),
+        '/home': (_) => const HomeScreen(),
+      },
     );
   }
 }

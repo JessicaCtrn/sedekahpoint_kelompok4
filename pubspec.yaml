@@ -16,6 +16,17 @@ dependencies:
   firebase_core: ^4.9.0
   cloud_firestore: ^6.4.1
   firebase_auth: ^6.5.1
+  firebase_storage: ^13.4.1
+  firebase_database: ^12.4.1
+  provider: ^6.1.5+1
+  google_fonts: ^8.1.0
+  image_picker: ^1.2.2
+  cached_network_image: ^3.4.1
+  geolocator: ^13.0.2          
+  google_maps_flutter: ^2.9.0    
+  shared_preferences: ^2.3.3 
+  url_launcher: ^6.3.2
+  geocoding: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -28,3 +39,7 @@ flutter:
 
   assets:
     - assets/Logo APK.png
+    - assets/rice.jpg
+    - assets/minuman.jpg
+    - assets/sembako.jpg
+    - assets/roti.jpg
