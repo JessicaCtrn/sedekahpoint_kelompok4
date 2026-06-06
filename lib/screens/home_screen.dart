@@ -8,9 +8,12 @@ import 'package:sedekahpoint_kelompok4/services/post_service.dart';
 import 'package:sedekahpoint_kelompok4/services/location_service.dart';
 import 'package:sedekahpoint_kelompok4/services/theme_provider.dart';
 import 'package:sedekahpoint_kelompok4/services/auth_service.dart';
-import 'detail_screen.dart';
-import 'favorite_screen.dart';
-import 'notification_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/detail_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/favorite_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/notification_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/post_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/search_screen.dart';
+import 'package:sedekahpoint_kelompok4/screens/profile_screen.dart';
 
 bool _isWaktuHabis(PostModel post) {
   try {
@@ -99,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
         onGoToProfile: () => setState(() => _currentIndex = 4),
         onGoToSearch: () => setState(() => _currentIndex = 1),
       ),
-      //const SearchScreen(),
-      //const PostScreen(),
+      const SearchScreen(),
+      const PostScreen(),
       const FavoriteScreen(),
-      //const ProfileScreen(),
+      const ProfileScreen(),
     ];
     
     return Scaffold(
