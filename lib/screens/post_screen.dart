@@ -211,6 +211,15 @@ class _PostScreenState extends State<PostScreen> {
       return;
     }
 
+    final porsi = int.tryParse(_porsiController.text) ?? 0;
+    if (porsi <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Jumlah porsi tidak valid! Harus lebih dari 0.')),
+      );
+      return;
+    }
+
     setState(() => _isLoading = true);
     try {
       final uid = FirebaseAuth.instance.currentUser!.uid;
@@ -226,9 +235,7 @@ class _PostScreenState extends State<PostScreen> {
       } else {
         imageBase64 = '';
       }
-
-      final porsi = int.tryParse(_porsiController.text) ?? 0;
-
+      
       // untuk menggabungkan tanggal yang dipilih dengan jam mulai/selesai
       // sehingga bisa dibandingkan dengan waktu sekarang secara akurat
       final jamMulaiParts = _jamMulaiController.text.trim().split(':');
